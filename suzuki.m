@@ -1,4 +1,4 @@
-% Crack tracing problem
+% Main pipeline
 
 % read image
 a = imread("a_edited.png");
@@ -44,9 +44,8 @@ P_skel = mat2gray(score_skel);
 
 % trace back with the scoring matrix to generate the best path.
 [path_skel, count_skel] = generate_path(grad_skel, score_skel, sr, 1, 0.2);
-[r_skel, c_skel] = find(path_skel==1);
+total = get_area(path_skel, 1, 1);
 
-[total, val] = size(r_skel);
 percent1 = count_skel/total
 %%%%%%%%%%%%%%%%%%%%%%%%% Method 1 ends %%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -60,9 +59,8 @@ P_bw = mat2gray(score_bw);
 
 % trace back with the scoring matrix to generate the best path.
 [path_bw, count_bw] = generate_path(a_bw, score_bw, sr, 1, 0.2);
-[r_bw, c_bw] = find(path_bw==1);
+total = get_area(path_bw, 1, 1);
 
-[total, val] = size(r_bw);
 percent2 = count_bw/total
 %%%%%%%%%%%%%%%%%%%%%%%%% Method 2 ends %%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -102,3 +100,17 @@ subplot(1,2,2);imshow(a_bw);
 title(["Crack tracing on original black & white image, %signal=", percent2]);
 hold on;
 plot(c_bw, r_bw, 'r.', 'MarkerSize', 0.1);
+impixelinfo;
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Find Intersection %%%%%%%%%%%%%%%%%%%%%%%%%
+% find connected components, aka. signal areas on the image.
+% (note: the next line is also in the "further denoise" block above)
+[L, n] = bwlabel(a_bw, 8);
+
+% find area intersecting the line (path = path_skel)
+area_sum = find_intersect(a_bw, path_skel, L, n)
+% find total area (white pixel number) on the image
+total_area = get_area(a_bw, 1, 1);
+
+area_ratio = area_sum/total_area
