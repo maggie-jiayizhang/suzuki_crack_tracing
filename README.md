@@ -18,12 +18,12 @@ For high level explanation of how the algorithm works, go to this [google doc](h
         - a.png: cropped img a from original.png
         - a_edited.png: manually edited a.png to hide noise signal at the bottom
           (Note: this step is not necessary)
-    - *suzuki.m*: the whole pipeline
-    - *score_path.m*: defines score_path()
-    - *generate_path.m*: defines generate_path()
-    - *get_area.m*: defines get_area(), helper function
-    - *find_intersect.m*: defines find_intersect()
-    - *remove_by_area.m*: defines remove_by_area, optional denoise func
+    + *suzuki.m*: the whole pipeline
+    + *score_path.m*: defines score_path()
+    + *generate_path.m*: defines generate_path()
+    + *get_area.m*: defines get_area(), helper function
+    + *find_intersect.m*: defines find_intersect()
+    + *remove_by_area.m*: defines remove_by_area, optional denoise func
     - **outputs**: preview of outputs in the pipeline + manually traced image
     - original.png: original img from Suzuki et al. 2020
 
