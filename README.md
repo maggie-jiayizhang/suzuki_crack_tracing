@@ -4,7 +4,7 @@ This is a crack tracing project (primarily for images in [Suzuki et al. 2020] (h
 
 **LANGUAGE: MATLAB**
 
-*Key words*: Dynamic programming (DP), Suzuki et al. 2020, geoscience
+**Key words**: Dynamic programming (DP), Suzuki et al. 2020, geoscience
 
 ## Usage
 For an input fluorescent microscopy image of stained microbes (pre-cropped), this pipeline first turns the image to black&white. Further denoising is optional at this point. Then the pipeline either proceed with/out skeletonizing the image. *A line marking the edge of the crack (OR where most microbial signal density) is present* will be generated as one of the end results of the pipeline. The pipeline also calculates *%signal:non-signal* on the line as well as *ratio of area intersecting the line/total signal area*.
