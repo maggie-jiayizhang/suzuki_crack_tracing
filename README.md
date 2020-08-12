@@ -1,5 +1,8 @@
 # suzuki_crack_tracing
 
+http://github.com - automatic!
+[GitHub](http://github.com)
+
 This is a crack tracing project (primarily for images in [Suzuki et al. 2020] (https://doi.org/10.1038/s42003-020-0860-1), see images in inputs/) by Maggie Zhang, MGRGX20.
 
 **LANGUAGE: MATLAB**
