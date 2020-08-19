@@ -1,7 +1,7 @@
 % Main pipeline
 
 % read image
-a = imread('inputs/a_edited.png');
+a = imread('inputs/a.png');
 %turn original image to black & white (bw)
 t = graythresh(a);
 a_bw = im2bw(a, t);
@@ -45,8 +45,7 @@ P_skel = mat2gray(score_skel);
 % trace back with the scoring matrix to generate the best path.
 [path_skel, count_skel] = generate_path(grad_skel, score_skel, sr, 1, 0.2);
 [r_skel, c_skel] = find(path_skel==1);
-
-total = get_area(path_skel, 1, 1);
+[total, ~] = size(r_skel);
 percent1 = count_skel/total
 %%%%%%%%%%%%%%%%%%%%%%%%% Method 1 ends %%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -61,8 +60,7 @@ P_bw = mat2gray(score_bw);
 % trace back with the scoring matrix to generate the best path.
 [path_bw, count_bw] = generate_path(a_bw, score_bw, sr, 1, 0.2);
 [r_bw, c_bw] = find(path_bw==1);
-
-total = get_area(path_bw, 1, 1);
+[total, ~] = size(r_skel);
 percent2 = count_bw/total
 %%%%%%%%%%%%%%%%%%%%%%%%% Method 2 ends %%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -95,11 +93,11 @@ title('Visualization on a\_bw (method 2)');
 % FIGURE 4 shows the final paths plotted on a_bw.
 figure;
 subplot(1,2,1);imshow(a_bw);
-title(['Crack tracing on processed image, %signal=', percent1]);
+title(['Crack tracing on processed image' percent1]);
 hold on;
 plot(c_skel, r_skel, 'b.', 'MarkerSize', 0.1);
 subplot(1,2,2);imshow(a_bw);
-title(['Crack tracing on original black & white image, %signal=', percent2]);
+title(['Crack tracing on original black & white image' percent2]);
 hold on;
 plot(c_bw, r_bw, 'r.', 'MarkerSize', 0.1);
 impixelinfo;
